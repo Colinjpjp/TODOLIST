@@ -1,15 +1,58 @@
-const { stdin, stdout } = require("process");
+const button1 = document.querySelector(".button1");
+const button2 = document.querySelector(".button2");
+const inputTXT = document.querySelector(".inputTXT");
+const spanError = document.querySelector(".spanError");
+let list = [];
 
-function principal() {
-  const readline = require("readline");
-  const rl = readline.createInterface({
-    input: process.stdin,
-    output: process.stdout,
-  });
+button1.onclick = () => {
+  validation(inputTXT.value.trim());
+};
 
-  rl.question("¿Cual es tu nombre? : ", (nombre) => {
-    console.log(`Hola, ${nombre}`);
-  });
+function validation(value) {
+  if (value === "") {
+    spanError.innerHTML = "No hay texto";
+    return;
+  }
+  setTask(inputTXT.value);
+  spanError.innerHTML = "";
+  inputTXT.value = "";
 }
 
-principal();
+function setTask(value) {
+  list.push(value);
+  localStorage.setItem("List", JSON.stringify(list));
+  rendering();
+}
+
+function main() {
+  let key = localStorage.getItem("List");
+  let parse = JSON.parse(key);
+  list = parse;
+}
+main();
+
+function clear() {
+  list = [];
+  localStorage.List = JSON.stringify(list);
+  rendering();
+  spanError = "";
+}
+button2.onclick = () => {
+  clear();
+};
+
+function rendering() {
+  const List = document.querySelector(".contentList");
+  function addElements(list) {
+    return function (elements) {
+      List.innerHTML = "";
+      elements.forEach((element) => {
+        list.innerHTML += `<li class="item">${element}</li>`;
+      });
+    };
+  }
+
+  const addElementsToMyList = addElements(List);
+  addElementsToMyList(list);
+}
+rendering();
