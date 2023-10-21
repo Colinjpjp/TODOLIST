@@ -14,6 +14,7 @@ function validation(value) {
     spanError.innerHTML = "No hay texto";
     return;
   }
+
   setTask(inputTXT.value);
   spanError.innerHTML = "";
   inputTXT.value = "";
@@ -34,6 +35,7 @@ main();
 
 function clear() {
   list = [];
+  // No es buena practica hacer esto,puede inducir errores siempre usa el metodo set, get o remove
   // localStorage.List = JSON.stringify(list);
   localStorage.removeItem(CACHE_KEY)
   rendering();
