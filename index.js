@@ -2,6 +2,10 @@ const button1 = document.querySelector(".button1");
 const button2 = document.querySelector(".button2");
 const inputTXT = document.querySelector(".inputTXT");
 const spanError = document.querySelector(".spanError");
+// las variables globales deben estar arriba!
+// no te sirve declarar esto cada ves que ejecutes la funcion
+const listElement = document.querySelector(".contentList");
+
 let list = [];
 const CACHE_KEY = "list";
 
@@ -47,21 +51,15 @@ function clear() {
   spanError = "";
 }
 
-// no necesitas una funcion de flecha que invoque la funcion clear, 
+// no necesitas una funcion de flecha que invoque la funcion clear,
 // solo debes pasar la declaracion de la funcion al evento
-button2.onclick = clear
+button2.onclick = clear;
 
 function rendering() {
-  const List = document.querySelector(".contentList");
-  function addElements(list) {
-    return function (elements) {
-      List.innerHTML = "";
-      elements.forEach((element) => {
-        list.innerHTML += `<li class="item">${element}</li>`;
-      });
-    };
-  }
-
-  const addElementsToMyList = addElements(List);
-  addElementsToMyList(list);
+  // para que hiciste esto aqui?
+  // currying innecesario, si ya vas a a usar fijo listElement no sirve de nada abstraer la funcion interna
+  listElement.innerHTML = "";
+  listElement.forEach((element) => {
+    this.innerHTML += `<li class="item">${element}</li>`;
+  });
 }
