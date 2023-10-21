@@ -35,7 +35,10 @@ function setTask(value) {
 function main() {
   let key = localStorage.getItem(CACHE_KEY);
   let parse = JSON.parse(key);
-  list = parse;
+  // parse puede estar indefine o null si es la primera ves que se guarda el valor 
+  // en el cache o si se ha borrado el cache
+  // por eso si parse es invalido se pasa un arreglo vacio
+  list = parse ?? [];
   // lo mejor es renderisar solo despues de haber obtenido los valores del cache
   rendering();
 }
