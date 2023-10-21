@@ -3,6 +3,7 @@ const button2 = document.querySelector(".button2");
 const inputTXT = document.querySelector(".inputTXT");
 const spanError = document.querySelector(".spanError");
 let list = [];
+const CACHE_KEY = 'list'
 
 button1.onclick = () => {
   validation(inputTXT.value.trim());
@@ -20,12 +21,12 @@ function validation(value) {
 
 function setTask(value) {
   list.push(value);
-  localStorage.setItem("List", JSON.stringify(list));
+  localStorage.setItem(CACHE_KEY, JSON.stringify(list));
   rendering();
 }
 
 function main() {
-  let key = localStorage.getItem("List");
+  let key = localStorage.getItem(CACHE_KEY);
   let parse = JSON.parse(key);
   list = parse;
 }
@@ -33,7 +34,8 @@ main();
 
 function clear() {
   list = [];
-  localStorage.List = JSON.stringify(list);
+  // localStorage.List = JSON.stringify(list);
+  localStorage.removeItem(CACHE_KEY)
   rendering();
   spanError = "";
 }
