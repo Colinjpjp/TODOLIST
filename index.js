@@ -62,7 +62,7 @@ function rendering() {
   // para que hiciste esto aqui?
   // currying innecesario, si ya vas a a usar fijo listElement no sirve de nada abstraer la funcion interna
   listElement.innerHTML = "";
-  listElement.forEach((element) => {
-    this.innerHTML += `<li class="item">${element}</li>`;
+  list.forEach((element) => {
+    listElement.innerHTML += `<li class="item">${element}</li>`;
   });
 }
