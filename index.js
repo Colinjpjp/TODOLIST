@@ -3,7 +3,7 @@ const button2 = document.querySelector(".button2");
 const inputTXT = document.querySelector(".inputTXT");
 const spanError = document.querySelector(".spanError");
 let list = [];
-const CACHE_KEY = 'list'
+const CACHE_KEY = "list";
 
 button1.onclick = () => {
   validation(inputTXT.value.trim());
@@ -15,7 +15,7 @@ function validation(value) {
     return;
   }
 
-  // si ya usaste el trim para pasar el valor a esta funcion 
+  // si ya usaste el trim para pasar el valor a esta funcion
   // pq vuelves a usar el valor sin trim?
   setTask(value);
   spanError.innerHTML = "";
@@ -33,21 +33,23 @@ function main() {
   let parse = JSON.parse(key);
   list = parse;
   // lo mejor es renderisar solo despues de haber obtenido los valores del cache
-rendering();
+  rendering();
 }
+
 main();
 
 function clear() {
   list = [];
   // No es buena practica hacer esto,puede inducir errores siempre usa el metodo set, get o remove
   // localStorage.List = JSON.stringify(list);
-  localStorage.removeItem(CACHE_KEY)
+  localStorage.removeItem(CACHE_KEY);
   rendering();
   spanError = "";
 }
-button2.onclick = () => {
-  clear();
-};
+
+// no necesitas una funcion de flecha que invoque la funcion clear, 
+// solo debes pasar la declaracion de la funcion al evento
+button2.onclick = clear
 
 function rendering() {
   const List = document.querySelector(".contentList");
