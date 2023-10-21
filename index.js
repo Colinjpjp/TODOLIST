@@ -32,6 +32,8 @@ function main() {
   let key = localStorage.getItem(CACHE_KEY);
   let parse = JSON.parse(key);
   list = parse;
+  // lo mejor es renderisar solo despues de haber obtenido los valores del cache
+rendering();
 }
 main();
 
@@ -61,4 +63,3 @@ function rendering() {
   const addElementsToMyList = addElements(List);
   addElementsToMyList(list);
 }
-rendering();
