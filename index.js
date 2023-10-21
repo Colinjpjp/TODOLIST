@@ -51,7 +51,8 @@ function clear() {
   // localStorage.List = JSON.stringify(list);
   localStorage.removeItem(CACHE_KEY);
   rendering();
-  spanError = "";
+  // lo que debes eliminar aqui no es el elemento html sino su contenido
+  spanError.innerText = "";
 }
 
 // no necesitas una funcion de flecha que invoque la funcion clear,
