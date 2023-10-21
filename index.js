@@ -15,7 +15,9 @@ function validation(value) {
     return;
   }
 
-  setTask(inputTXT.value);
+  // si ya usaste el trim para pasar el valor a esta funcion 
+  // pq vuelves a usar el valor sin trim?
+  setTask(value);
   spanError.innerHTML = "";
   inputTXT.value = "";
 }
